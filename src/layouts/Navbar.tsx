@@ -7,7 +7,8 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputRightElement
+  InputRightElement,
+  Text
 } from "@chakra-ui/core";
 import history from "../routes/history";
 
@@ -19,16 +20,24 @@ const MENU_ITEMS = [
   {
     text: "Profile",
     uri: "/profile"
+  },
+  {
+    text: "Market",
+    uri: "/market"
+  },
+  {
+    text: "Place",
+    uri: "/place"
   }
 ];
 
 const Navbar: React.FC = () => (
-  <Box bg="tomato" w="100%" p={4} color="white">
+  <Box bg="tomato" w="100%" minH="150px" p={4}>
     <Flex justify="space-between" direction="row">
       <ButtonGroup spacing={4}>
         {MENU_ITEMS.map(m => (
           <Button
-            variantColor="teal"
+            //variantColor="teal"
             variant="link"
             onClick={() => history.replace(m.uri)}
           >
