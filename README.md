@@ -1,1 +1,1 @@
-# supergler-core
+# supergler-ui
