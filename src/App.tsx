@@ -1,15 +1,16 @@
 import React from "react";
-import { ThemeProvider, CSSReset, Button } from "@chakra-ui/core";
-import customTheme from "./theme/customTheme";
-import Main from "./layout/Main";
+import { Router } from "react-router-dom";
+import { ThemeProvider, CSSReset } from "@chakra-ui/core";
+import customTheme from "./themes/customTheme";
+import routes from "./routes/routes";
+import history from "./routes/history";
 
-const App: React.FC = props => {
+const App: React.FC = () => {
   return (
     <>
       <ThemeProvider theme={customTheme}>
         <CSSReset />
-        <Main />
-        {props.children}
+        <Router history={history}>{routes}</Router>
       </ThemeProvider>
     </>
   );
