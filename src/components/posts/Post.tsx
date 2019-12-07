@@ -10,30 +10,25 @@ import {
   Link,
   Stack
 } from "@chakra-ui/core";
-import { IoIosChatbubbles, IoIosEye, IoIosShareAlt } from "react-icons/io";
+// import { IoIosChatbubbles, IoIosEye, IoIosShareAlt } from "react-icons/io";
+import { IoIosChatbubbles, IoIosEye, IoIosShareAlt } from "../Icons";
 import asyncComponent from "../asyncComponent";
 
-const UserAvatar = asyncComponent(() => import("../UserAvatar"));
+const UserAvatar = asyncComponent(() => import("../users/UserAvatar"));
 
-type Picture = {
-  src: string;
-  alt?: string;
-  width?: number;
-  height?: number;
-};
-
-interface PostProps {
+export interface PostProps {
   image?: string;
+  title: string;
   message: string;
 }
 
-const Post: React.FC<PostProps> = ({ image, message }) => (
+const Post: React.FC<PostProps> = ({ image, title, message }) => (
   <>
     <Box w="100%">
       <Box rounded="lg">
         {image && <Image rounded="5px" src={image} alt={"property.imageAlt"} />}
         <Heading as="h2" size="xl">
-          In love with React & Next
+          {title}
         </Heading>
 
         <Box p="6">
