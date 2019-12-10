@@ -21,6 +21,7 @@ import {
   IoIosShareAlt
 } from "../Icons";
 import asyncComponent from "../asyncComponent";
+import { IconType } from "react-icons/lib/cjs";
 
 const UserAvatar = asyncComponent(() => import("../users/UserAvatar"));
 
@@ -31,25 +32,28 @@ export interface PostProps {
   message: string;
 }
 
-const getPostType = (type: string) => {
-  switch (type) {
-    case "article":
-      return IoIosBook;
-    case "help":
-      return IoIosAlert;
-    default:
-      return IoIosCalendar;
-  }
+type ObjectPostType = {
+  icon: IconType;
+  color: string;
 };
 
-const getPostTypeColor = (type: string) => {
+const getObjectPostType = (type: string): ObjectPostType => {
   switch (type) {
     case "article":
-      return "green";
+      return {
+        icon: IoIosBook,
+        color: "green"
+      };
     case "help":
-      return "red";
+      return {
+        icon: IoIosAlert,
+        color: "red"
+      };
     default:
-      return "orange";
+      return {
+        icon: IoIosCalendar,
+        color: "orange"
+      };
   }
 };
 
@@ -65,9 +69,9 @@ const Post: React.FC<PostProps> = ({
         {image && <Image rounded="5px" src={image} alt={"property.imageAlt"} />}
         <Stack isInline spacing={3}>
           <Box
-            as={getPostType(type)}
+            as={getObjectPostType(type).icon}
             size="32px"
-            color={`${getPostTypeColor(type)}.400`}
+            color={`${getObjectPostType(type).color}.400`}
             verticalAlign="baseline"
           />
           <Heading as="h2" size="xl">
