@@ -3,27 +3,22 @@ import {
   Box,
   Button,
   Flex,
-  Modal,
-  Text,
+  RadioGroup,
+  Radio,
   Stack,
-  ModalBody,
-  ModalFooter,
-  ModalContent,
-  useDisclosure,
-  ModalOverlay,
-  ModalHeader,
-  ModalCloseButton
+  useDisclosure
 } from "@chakra-ui/core";
 import Post, { PostProps } from "./posts/Post";
-
 import { range } from "../utils/range";
 import withModal from "../components/hocs/withModal";
 import PostForm from "../components/posts/PostForm";
-//import asyncComponent from "./asyncComponent";
+
+const POST_TYPES = ["article", "help", "event"];
 
 const makePosts = (max: number): PostProps[] => {
   return range(max).map(n => ({
     image: "https://picsum.photos/980/300",
+    type: POST_TYPES[Math.floor(Math.random() * 3)],
     title: `Title ${n}`,
     message: `Bacon ipsum dolor amet capicola pork loin pastrami shoulder tri-tip. Leberkas landjaeger rump ham meatloaf porchetta ham hock pig drumstick meatball corned beef doner venison sausage. Chislic venison meatball jerky prosciutto leberkas alcatra sausage buffalo cupim hamburger frankfurter tongue. Kielbasa pancetta salami, pork belly ham hamburger filet mignon shoulder corned beef tail turducken. Prosciutto capicola sausage meatball kevin.
 
@@ -33,11 +28,10 @@ const makePosts = (max: number): PostProps[] => {
   }));
 };
 
-//const PostForm = asyncComponent(() => import("../components/posts/PostForm"));
-
 const Home: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [posts, setPosts] = React.useState(makePosts(5));
+  const [posts, setPosts] = React.useState(makePosts(10));
+  const [selectedPostType, setSelectedPostType] = React.useState("0");
 
   const handleOnPostFormSubmit = (newPost: PostProps) => {
     setPosts([newPost, ...posts]);
@@ -57,17 +51,45 @@ const Home: React.FC = () => {
     <Flex direction="column" align="center">
       <Box w="70%" p={5}>
         <Stack spacing={5} shouldWrapChildren={true}>
-          <Button onClick={onOpen}>+ New</Button>
+          <Stack isInline align="right" justify="space-between" padding={2}>
+            <Button onClick={onOpen}>+ สร้างโพสต์</Button>
+
+            <RadioGroup
+              defaultValue="0"
+              value={selectedPostType}
+              spacing={5}
+              isInline
+              onChange={e => setSelectedPostType(e.target.value)}
+            >
+              <Radio variantColor="gray" value="0">
+                ทั้งหมด
+              </Radio>
+              <Radio variantColor="green" value="article">
+                บทความ
+              </Radio>
+              <Radio variantColor="red" value="help">
+                ช่วยเหลือ
+              </Radio>
+              <Radio variantColor="orange" value="event">
+                กิจกรรม
+              </Radio>
+            </RadioGroup>
+          </Stack>
 
           <PostFormModal />
 
-          {posts.map(post => (
-            <Post
-              title={post.title}
-              message={post.message}
-              image={post.image || "https://picsum.photos/980/300"}
-            />
-          ))}
+          {posts
+            .filter(
+              post => post.type === selectedPostType || selectedPostType === "0"
+            )
+            .map(post => (
+              <Post
+                type={post.type}
+                title={post.title}
+                message={post.message}
+                image={post.image || "https://picsum.photos/980/300"}
+              />
+            ))}
         </Stack>
       </Box>
     </Flex>

@@ -7,27 +7,30 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputRightElement,
-  Text
+  InputRightElement
 } from "@chakra-ui/core";
 import history from "../routes/history";
 
 const MENU_ITEMS = [
   {
-    text: "Home",
+    text: "หน้าหลัก",
     uri: "/"
   },
   {
-    text: "Profile",
+    text: "โปรไฟล์",
     uri: "/profile"
   },
   {
-    text: "Market",
+    text: "ตลาดซื้อขาย",
     uri: "/market"
   },
   {
-    text: "Place",
+    text: "สถานที่",
     uri: "/place"
+  },
+  {
+    text: "ล็อกอิน",
+    uri: "/login"
   }
 ];
 
@@ -37,8 +40,9 @@ const Navbar: React.FC = () => (
       <ButtonGroup spacing={4}>
         {MENU_ITEMS.map(m => (
           <Button
-            //variantColor="teal"
+            //variantColor="purple"
             variant="link"
+            color="white"
             onClick={() => history.replace(m.uri)}
           >
             {m.text}
@@ -46,7 +50,7 @@ const Navbar: React.FC = () => (
         ))}
       </ButtonGroup>
       <InputGroup>
-        <Input placeholder="Search..." />
+        <Input placeholder="ค้นหา..." />
         <InputRightElement
           children={<Icon name="search" color="green.500" />}
         />
