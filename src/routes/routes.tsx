@@ -2,6 +2,7 @@ import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 import asyncComponent from "../components/asyncComponent";
 import PostForm from "../components/posts/PostForm";
+import NewGler from "../components/glers/NewGler";
 
 const MainLayout = asyncComponent(() => import("../layouts/Main"));
 const Home = asyncComponent(() => import("../components/Home"));
@@ -18,6 +19,7 @@ const Routes = (
       <Route path="/profile" exact component={Profile} />
       <Route path="/newpost" exact component={PostForm} />
       <Route path="/login" exact component={Login} />
+      <Route path="/glers/profile/new" exact component={NewGler} />
       <Route path="/glers/:id/profile" exact component={GlerProfile} />
       {/* <Route exact path="/signin-callback" component={SigninCallback} />
       <Route exact path="/signout-callback" component={SignoutCallback} />
