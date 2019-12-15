@@ -41,10 +41,8 @@ const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
           initialValues={initialValues}
           onSubmit={(values, actions) => {
             setTimeout(() => {
-              //alert(JSON.stringify(values, null, 2));
               actions.setSubmitting(false);
-              onSubmit(values);
-              //onClose();
+              onSubmit({ ...values, type: "aritcle" });
             }, 1000);
           }}
           render={props => (

@@ -16,6 +16,7 @@ import {
 import { Formik, Form, Field, FieldProps } from "formik";
 
 import { IoLogoFacebook, IoLogoTwitter } from "../Icons";
+import { IoLogoGoogle } from "react-icons/io";
 
 interface LoginProps {
   email: string;
@@ -116,12 +117,20 @@ const Login: React.FC = () => {
                   Facebook
                 </Button>
                 <Button
+                  leftIcon={IoLogoGoogle}
+                  color="white"
+                  backgroundColor="#DB4437"
+                >
+                  Google
+                </Button>
+                <Button
                   leftIcon={IoLogoTwitter}
                   color="white"
                   backgroundColor="#00acee"
                 >
                   Twitter
                 </Button>
+
                 {/* </ButtonGroup> */}
               </Stack>
             </Form>

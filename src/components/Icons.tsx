@@ -6,6 +6,7 @@ import {
   IoIosEye,
   IoIosShareAlt,
   IoLogoFacebook,
+  IoLogoGoogle,
   IoLogoTwitter
 } from "react-icons/io";
 export {
@@ -16,5 +17,6 @@ export {
   IoIosEye,
   IoIosShareAlt,
   IoLogoFacebook,
+  IoLogoGoogle,
   IoLogoTwitter
 };
