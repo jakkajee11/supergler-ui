@@ -41,6 +41,7 @@ const Navbar: React.FC = () => (
         {MENU_ITEMS.map(m => (
           <Button
             //variantColor="purple"
+            key={m.uri}
             variant="link"
             color="white"
             onClick={() => history.replace(m.uri)}
